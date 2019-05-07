@@ -81,7 +81,7 @@ export class SidenavComponent implements OnInit {
   @Input('opened') opened: Boolean = false;
 
   // Lado em que o SideNav aparece
-  @Input('side') side: String = 'right';
+  @Input('side') side: String = 'left';
 
   // Largura do SideNav
   @Input('size') size: String = '30%';
@@ -187,6 +187,7 @@ export class SidenavComponent implements OnInit {
   // Função chamada quando clicamos fora do Sidenav
   // Nela é verificado se o autoclose é true, caso seja, ele chama a função de fechar o sidenav
   async closeOutsideSidenav() {
+    console.log("chegou");
     if (this.autoClose && this.aux >= 1) {
       this.closeSidenav();
     }
