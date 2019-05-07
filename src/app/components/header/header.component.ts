@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import { faFilter, IconDefinition, faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,16 +8,20 @@ import { faFilter, IconDefinition, faSearch } from '@fortawesome/free-solid-svg-
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  
-  public isCollapsed = true;
-
   faFilter:IconDefinition = faFilter;
-  faSearch:IconDefinition = faSearch;
+  faSearch:IconDefinition = faSearch;  
+
+  private openedFilterSidenav:boolean= false;
+  @Output() openCloseSidenav = new EventEmitter<boolean>();
+  
   constructor() { }
   
   ngOnInit() {
   }
 
-
+  async openCloseSidenavFilter(){
+    this.openedFilterSidenav = !this.openedFilterSidenav;
+    this.openCloseSidenav.emit(this.openedFilterSidenav);
+  }
 
 }

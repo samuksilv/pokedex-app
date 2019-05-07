@@ -6,7 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 
-
 export class AppComponent {
   title = 'pokedex';
+
+  sidenavOpened:boolean= false;
+  
+  ngOnInit(): void {
+    this.sidenavOpened=false;
+  }
+
+  async openCloseSidenav(event:boolean){
+    this.sidenavOpened = event;   
+    console.log(this.sidenavOpened); 
+  }
 }

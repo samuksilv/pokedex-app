@@ -1,5 +1,10 @@
-<app-header></app-header>
+<app-header (openCloseSidenav)="openCloseSidenav($event)"></app-header>
 
-<div class=" jumbotron m-3 ">
+<ng-sidebar-container>
+    <ng-sidebar [(opened)]="sidenavOpened" [animate]="true" [mode]="'over'" [showBackdrop]="true">
+        <p>Sidebar contents</p>
+    </ng-sidebar>
+</ng-sidebar-container>
+<div class="jumbotron m-3 ">
     <router-outlet></router-outlet>
 </div>
