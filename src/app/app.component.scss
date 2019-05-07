@@ -1,3 +1,15 @@
-ng-sidebar-container{
-    height: 100px;    
+ng-sidebar-container {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body {
+    background: pink;
+}
+
+.ng-sidebar--left[_ngcontent-gqk-c3] {
+    background: red;
 }

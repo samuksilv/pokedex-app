@@ -1,0 +1,7 @@
+<div [@slider]="state" id="sidenav" *ngIf="opened" class="sidenav" [ngClass]="getClasses()" [ngStyle]="getStyles()" (clickOutside)="closeOutsideSidenav()">
+    <header> {{ navTitle }} </header>
+    <i *ngIf="showCloseButton" class="iconic iconic-x-thin close-icon" (click)="closeSidenav()"></i>
+    <ng-content></ng-content>
+</div>
+
+<div *ngIf="backdrop && opened" class="sidenav-backdrop"></div>
