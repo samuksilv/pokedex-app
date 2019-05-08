@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,14 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'pokedex';
-
-  sidenavOpened:boolean= false;
   
-  ngOnInit(): void {
-    this.sidenavOpened=false;
+  @ViewChild('sidenavFilter') sidenavFilter: SidenavComponent;
+  
+  ngOnInit(): void {    
   }
 
   async openCloseSidenav(event:boolean){
-    this.sidenavOpened = event;   
-    console.log(this.sidenavOpened); 
+    
+    this.sidenavFilter.openSidenav();    
   }
 }

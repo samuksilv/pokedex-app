@@ -6,6 +6,8 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 
 @Component({
@@ -38,39 +40,39 @@ import {
       )),
       // Left abrir
       transition('void => left', [
-        style({transform: 'translateX(-100%)'}),
+        style({ transform: 'translateX(-100%)' }),
         animate(300)
       ]),
       // Left fechar      
       transition('left => void', [
-        animate(100, style({transform: 'translateX(-100%)'}))
+        animate(100, style({ transform: 'translateX(-100%)' }))
       ]),
       // Right abrir
       transition('void => right', [
-        style({transform: 'translateX(100%)'}),
+        style({ transform: 'translateX(100%)' }),
         animate(300)
       ]),
       // Right fechar      
       transition('right => void', [
-        animate(100, style({transform: 'translateX(100%)'}))
+        animate(100, style({ transform: 'translateX(100%)' }))
       ]),
       // Top abrir
       transition('void => top', [
-        style({transform: 'translateY(-100%)'}),
+        style({ transform: 'translateY(-100%)' }),
         animate(300)
       ]),
       // Top fechar
       transition('top => void', [
-        animate(100, style({transform: 'translateY(-100%)'}))
+        animate(100, style({ transform: 'translateY(-100%)' }))
       ]),
       // Bottom abrir
       transition('void => bottom', [
-        style({transform: 'translateY(100%)'}),
+        style({ transform: 'translateY(100%)' }),
         animate(300)
       ]),
       // Bottom fechar
       transition('bottom => void', [
-        animate(100, style({transform: 'translateY(100%)'}))
+        animate(100, style({ transform: 'translateY(100%)' }))
       ]),
     ])
   ],
@@ -84,7 +86,7 @@ export class SidenavComponent implements OnInit {
   @Input('side') side: String = 'left';
 
   // Largura do SideNav
-  @Input('size') size: String = '30%';
+  @Input('size') size: String = '50%';
 
   // Fechar ao clicar fora do SideNav
   @Input('autoClose') autoClose: Boolean = true;
@@ -113,16 +115,18 @@ export class SidenavComponent implements OnInit {
   // Evento acionado quando a sidenav é fechada
   @Output() sidenavClosed: EventEmitter<any> = new EventEmitter<any>();
 
+  faTimes=faTimes;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  async toggleState() {
+  toggleState() {
     this.state = this.side;
   }
 
-  async getClasses() {
+  getClasses() {
     let side, open, type = '';
     // Verifica se é válido o lado e adiciona em uma variável
     if (
@@ -144,21 +148,21 @@ export class SidenavComponent implements OnInit {
     // Adiciona em uma variável o titleType
     if (
       this.titleType === 'success' ||
-      this.titleType === 'error'   ||
+      this.titleType === 'error' ||
       this.titleType === 'warning' ||
       this.titleType === 'default'
     ) {
       type = 'data-status-title-type-' + this.titleType;
     }
-    // Retorna uma string com as classes a serem inseridas
+    // Retorna uma string com as classes a serem inseridas    
     return '' + side + ' ' + open + ' ' + type;
   }
 
-  async getStyles() {
+  getStyles() {
     // Verifica a posição do sidenav e define se ele receberá uma altura ou largura no Style
     if (this.side === 'top' || this.side === 'bottom') {
       return { height: '' + this.size };
-    } else if (this.side === 'right' || this.side === 'left') {
+    } else if (this.side === 'right' || this.side === 'left') {      
       return { width: '' + this.size };
     } else {
       return console.error(
@@ -168,15 +172,15 @@ export class SidenavComponent implements OnInit {
   }
 
   // Abre e fecha o Sidenav
-  async openSidenav() {
-    this.toggleState();    
+  openSidenav() {
+    this.toggleState();
     this.opened = true;
     this.aux = 0;
     this.sidenavOpened.emit(this);
   }
 
   // Fecha o Sidenav
-  async closeSidenav() {
+  closeSidenav() {
     if (this.opened) {
       this.opened = !this.opened;
       this.toggleState();
@@ -186,8 +190,7 @@ export class SidenavComponent implements OnInit {
 
   // Função chamada quando clicamos fora do Sidenav
   // Nela é verificado se o autoclose é true, caso seja, ele chama a função de fechar o sidenav
-  async closeOutsideSidenav() {
-    console.log("chegou");
+  closeOutsideSidenav() {   
     if (this.autoClose && this.aux >= 1) {
       this.closeSidenav();
     }
