@@ -1,4 +1,6 @@
 import { PokemonSprit } from './pokemon-sprit';
+import { PokemonStatus } from './pokemon-status';
+import { PokemonType } from './pokemon-type';
 
 export interface Pokemon {
     id:number;
@@ -7,6 +9,8 @@ export interface Pokemon {
     weight:number;
     height:number;
     is_default:true;
-    sprites:PokemonSprit[];    
-    //TODO: implement class pokemon
+    sprites:PokemonSprit[]; 
+    types:PokemonType[];
+    status: PokemonStatus[];
+    locations:String[];
 }

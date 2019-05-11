@@ -2,7 +2,7 @@ import { LinkPokemon } from './link-pokemon';
 
 export interface ResourcePokemon {
     count:number;
-    next:string;
+    nextUrlUrl:string;
     previos:string;
-    results:LinkPokemon[];
+    results:LinkPokemon[];    
 }
