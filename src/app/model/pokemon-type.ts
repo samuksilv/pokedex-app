@@ -1,4 +1,4 @@
-export interface PokemonType {
-    type: String;
-    color: String;
+export class PokemonType {
+    type: string;
+    color: string;
 }

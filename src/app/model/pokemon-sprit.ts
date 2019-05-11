@@ -1,10 +1,10 @@
-export interface PokemonSprit {
-    back_default: String;
-    back_female: String;
-    back_shiny: String;
-    back_shiny_female: String;
-    front_default: String;
-    front_female: String;
-    front_shiny: String;
-    front_shiny_female: String;
+export class PokemonSprit {
+    back_default: string;
+    back_female: string;
+    back_shiny: string;
+    back_shiny_female: string;
+    front_default: string;
+    front_female: string;
+    front_shiny: string;
+    front_shiny_female: string;
 }

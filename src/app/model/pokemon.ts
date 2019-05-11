@@ -1,10 +1,11 @@
 import { PokemonSprit } from './pokemon-sprit';
 import { PokemonStatus } from './pokemon-status';
 import { PokemonType } from './pokemon-type';
+import { PokemonAbility } from './pokemon-ability';
 
-export interface Pokemon {
+export class Pokemon {
     id:number;
-    name:String;
+    name:string;
     order:number;
     weight:number;
     height:number;
@@ -12,5 +13,6 @@ export interface Pokemon {
     sprites:PokemonSprit[]; 
     types:PokemonType[];
     status: PokemonStatus[];
-    locations:String[];
+    locations:string[];
+    abilities: PokemonAbility[];
 }

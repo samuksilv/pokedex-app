@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   private openedFilterSidenav:boolean= false;
   @Output() openCloseSidenav = new EventEmitter<boolean>();
   
-  constructor() { }
+  constructor() { } 
   
   ngOnInit() {
   }
