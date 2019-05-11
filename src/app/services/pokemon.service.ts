@@ -20,18 +20,20 @@ export class PokemonService {
   private baseUrl = environment.url_api_pokemon;
 
   getResourcePokemons(): Observable<ResourcePokemon> {
-    return this.http.get(`${this.baseUrl}/api/v2/pokemon`)
+    return this.http.get(`/api/v2/pokemon/?offset=1&limit=964`)
       .pipe(        
         map((result: any) => {
           return new ResourcePokemon(result.count, result.next,
             result.previos, result.results.map(r => r.name));
         }),
-        catchError(err => throwError('Erro ao buscar os livros'))
+        catchError((err) => {
+          console.error(err);
+          return throwError('Erro ao buscar os recursos');} )
       );
   }
 
   getPokemonByName(name: string): Observable<Pokemon> {
-    return this.http.get(`${this.baseUrl}api/v2/pokemon/${name}`)
+    return this.http.get(`api/v2/pokemon/${name}`)
       .pipe(
         map((result: any) => {
           let pokemon = new Pokemon();
@@ -40,10 +42,7 @@ export class PokemonService {
           pokemon.name = result.name;
           pokemon.order = result.order;
           pokemon.weight = result.weight;
-          pokemon.sprites = result.sprites
-            .map((sprit: any) => {
-              return sprit as PokemonSprit
-            });
+          pokemon.sprites = <PokemonSprit>result.sprites           
           pokemon.status = result.stats
             .map((stat: any) => {
               return new PokemonStatus(stat.stat.name, stat.base_stat);
@@ -68,7 +67,7 @@ export class PokemonService {
   }
 
   getPokemonById(id: number): Observable<Pokemon> {
-    return this.http.get(`${this.baseUrl}api/v2/pokemon/${name}`)
+    return this.http.get(`api/v2/pokemon/${name}`)
     .pipe(
       map((result: any) => {
         let pokemon = new Pokemon();

@@ -10,7 +10,7 @@ export class Pokemon {
     weight:number;
     height:number;
     is_default:true;
-    sprites:PokemonSprit[]; 
+    sprites:PokemonSprit; 
     types:PokemonType[];
     status: PokemonStatus[];
     locations:string[];

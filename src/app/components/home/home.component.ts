@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { Pokemon } from 'src/app/model/pokemon';
 import { ResourcePokemon } from 'src/app/model/resource-pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { map } from 'rxjs/operators';
-import { resource } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +12,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private service: PokemonService) { }
 
-  pokemons: Pokemon[];
+  pokemons: Pokemon[] = [];
   resource: ResourcePokemon;
 
   ngOnInit() {
@@ -30,26 +27,27 @@ export class HomeComponent implements OnInit {
           console.error(error);
         },
         () => {
+          console.log(this.resource);
           console.timeEnd("resource");
-          console.log("termino de carregamento do resource");
+
+          console.time("pokemons");
+
+          this.resource.pokemons.map((name) => {
+            this.service.getPokemonByName(name).subscribe(
+              result => this.pokemons.push(result),
+              error => {
+                console.timeEnd("pokemons");
+                console.error(error);
+              }
+            )
+          });
+          console.log(this.pokemons);
+          console.timeEnd("pokemons");
         }
       );
 
-    console.time("pokemons");
 
-    this.resource.pokemons.map((name) => {
-      this.service.getPokemonByName(name).subscribe(
-        result => this.pokemons.push(result),
-        error => {
-          console.timeEnd("pokemons");
-          console.error(error);
-        },
-        () => {
-          console.timeEnd("pokemons");
-          console.log("termino de carregamento dos pokemons");
-        }
-      )
-    })
+
   }
 
 }
