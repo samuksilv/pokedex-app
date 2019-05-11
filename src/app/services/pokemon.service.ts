@@ -20,7 +20,7 @@ export class PokemonService {
   private baseUrl = environment.url_api_pokemon;
 
   getResourcePokemons(): Observable<ResourcePokemon> {
-    return this.http.get(`/api/v2/pokemon/?offset=1&limit=964`)
+    return this.http.get(`/api/v2/pokemon/`)
       .pipe(        
         map((result: any) => {
           return new ResourcePokemon(result.count, result.next,
