@@ -7,4 +7,5 @@ const proxy = [
     changeOrigin:true
   }
 ];
+
 module.exports = proxy;
