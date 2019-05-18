@@ -24,14 +24,12 @@ export class HomeComponent implements OnInit {
     this.service.getResourcePokemons()
       .pipe(
         tap((resources: ResourcePokemon) => this.resource = resources),
-        pluck('pokemons'), 
-        mergeMap((array:string[])=> array.map(x=> x)),                
-        mergeMap((name:string)=> this.service.getPokemonByName(name)),        
-      )      
+        pluck('pokemons'),
+        mergeMap((array: string[]) => array.map(x => x)),
+        mergeMap((name: string) => this.service.getPokemonByName(name)),                 
+      )
       .subscribe(
-        (pokemon:Pokemon) => {
-          this.pokemons.push(pokemon)          
-        },
+        (pokemon: Pokemon) => this.pokemons.push(pokemon),
         error => console.error(error),
         () => console.log('completed'));
   }
