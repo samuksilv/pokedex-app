@@ -11,7 +11,7 @@ import { PokemonDetailComponent } from './components/pokemon-detail/pokemon-deta
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FilterPokemonComponent } from './components/filter-pokemon/filter-pokemon.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 

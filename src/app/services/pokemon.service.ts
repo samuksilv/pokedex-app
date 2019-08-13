@@ -19,12 +19,13 @@ export class PokemonService {
 
   private baseUrl = environment.url_api_pokemon;
 
-  getResourcePokemons(): Observable<ResourcePokemon> {
-    return this.http.get(`/api/v2/pokemon/`)
+  getResourcePokemons(limit:number = 30): Observable<ResourcePokemon> {
+    return this.http.get(`/api/v2/pokemon/?limit=${limit}`)
       .pipe(        
-        map((result: any) => {
+        map((result: any) => {                    
+          let urls= result.results.map((obj)=> obj.url);
           return new ResourcePokemon(result.count, result.next,
-            result.previos, result.results.map(r => r.name));
+            result.previos, urls);          
         }),
         catchError((err) => {
           console.error(err);
