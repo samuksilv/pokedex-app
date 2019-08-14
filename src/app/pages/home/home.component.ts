@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    console.time("resource");
-
     let req = this.service.getResourcePokemons()
       .pipe(
         tap((resources: ResourcePokemon) => this.resource = resources),
@@ -34,6 +32,7 @@ export class HomeComponent implements OnInit {
       .subscribe(
         (pokemons: Pokemon[]) => {
           this.pokemons = pokemons;
+          console.log(this.pokemons);
         },
         error => console.error(error),
         () => console.log('completed'));
